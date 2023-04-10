@@ -1,0 +1,42 @@
+﻿<Window x:Class="RovaPOS.Sells"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RovaPOS"
+        mc:Ignorable="d"
+        Title="Inventory"
+        Width="1360"
+        Height="768"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+        Background="GhostWhite" FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+           
+            <RowDefinition Height="768"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <Rectangle Name="Rec_One"  Grid.Row="0" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+       
+        <Viewbox Grid.Row="1"
+                    Name="Panel_Add"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                   >
+
+        </Viewbox>
+       
+    </Grid>
+</Window>

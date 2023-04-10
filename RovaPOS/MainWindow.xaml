@@ -1,0 +1,184 @@
+﻿<Window x:Class="RovaPOS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RovaPOS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize" 
+        FlowDirection="RightToLeft"
+        Loaded="Window_Loaded"
+        >
+    <DockPanel>
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="Column_One" Width="50"/>
+                <ColumnDefinition Name="Column_Two" Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--  this is not a good place for text block.
+          the text block is beneath the rectangle  
+          so it would not be seen  -->
+            <!--<TextBlock Grid.Column="1"  Text="Some Text"/>-->
+            <Rectangle Name="Rec_One" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0.5">
+                        <GradientStop Color="#1b96f6" Offset="0" />
+                        <GradientStop Color="White" Offset="1" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Grid.Row="0" Grid.Column="1"  >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0.5">
+                        <GradientStop Color="#1b96f6" Offset="1" />
+                        <GradientStop Color="White" Offset="0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <Button
+                    Name="Btn_menu_close"
+                    Height="25"
+                    Width="25"
+                    Margin="10"
+                    Click="Btn_menu_close_Click_1" RenderTransformOrigin="0.504,0.504"
+                    
+                    >
+                    <Button.Background>
+                        <ImageBrush ImageSource="pic/menu.png"/>
+                    </Button.Background>
+
+                </Button>
+            </StackPanel>
+            <StackPanel Name="Panel_Top"  Grid.Column="1" Grid.Row="0"  Orientation="Horizontal" FlowDirection="LeftToRight">
+                <Button
+                        Click="Button_Settings" Height="50" Margin="0,0,0,-0.4" VerticalAlignment="Top">
+                    <Button.Background>
+                        <ImageBrush ImageSource="pic/settings.png"/>
+                    </Button.Background>
+                    <Image 
+                       
+                       Height="25" 
+                       Width="25" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Right" 
+                       Margin="10"
+                       >
+                        <Image.OpacityMask>
+                            <ImageBrush ImageSource="pic/settings.png" Stretch="Uniform"/>
+                        </Image.OpacityMask>
+                    </Image>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Label Content="Sara Alex"
+                       Name="Label_Owner_name"
+                       Height="Auto" 
+                       Width="Auto" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Right" 
+                       Margin="10" 
+                       FontSize="14"
+                       Foreground="White"/>
+                <Ellipse Height="35"
+                         Width="35"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Right"
+                         Margin="5,5,10,0" >
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="pic/el-bostan.jpg" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+
+                </Ellipse>
+            </StackPanel>
+            <StackPanel Name="Panel_Menu"  Grid.Row="1" Grid.Column="0">
+                <Button Height="50"
+                        Width="Auto" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="Black" 
+                        Background="{x:Null}"
+                       
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Margin="0,5,0,5"
+                        />
+                <Button Height="50"
+                        Width="Auto" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="Black" 
+                        Background="{x:Null}"
+                       
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Margin="0,5,0,5"
+                        />
+                <Button Height="50"
+                        Width="Auto" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="Black" 
+                        Background="{x:Null}"
+                       
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Margin="0,5,0,5"
+                        />
+                <Button Height="50"
+                        Width="Auto" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="Black" 
+                        Background="{x:Null}"
+                       
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Margin="0,5,0,5"
+                        />
+                <Button Height="50"
+                        Width="Auto" 
+                        BorderBrush="{x:Null}" 
+                        Foreground="Black" 
+                        Background="{x:Null}"
+                       
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Margin="0,5,0,5"
+                        />
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" Grid.Column="1"  Margin="12,12,12,0">
+                <!-- Window content here -->
+
+                <StackPanel Name="Main_panel" Orientation="Horizontal" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </DockPanel>
+
+</Window>
+        

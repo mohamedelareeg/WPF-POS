@@ -1,0 +1,39 @@
+﻿<Window x:Class="RovaPOS.Purchases"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RovaPOS"
+        mc:Ignorable="d"
+        Title="POS" 
+        Width="1360"
+        Height="768"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Name="Rec_One" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Viewbox Grid.Row="1"
+                    Name="Panel_Sell"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                   >
+           
+        </Viewbox>
+    </Grid>
+</Window>

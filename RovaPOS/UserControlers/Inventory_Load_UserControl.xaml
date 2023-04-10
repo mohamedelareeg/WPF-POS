@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="RovaPOS.UserControlers.Inventory_Load_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RovaPOS.UserControlers"
+             mc:Ignorable="d" 
+             VerticalAlignment="Stretch" 
+             HorizontalAlignment="Stretch" 
+             Loaded="UserControl_Loaded">
+    <Grid
+           Margin="10" 
+           Height="320"
+           Width="1024"
+           Background="White" FlowDirection="RightToLeft">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabControl
+            Height="100"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+                <TabItem Header="البحث حسب كود المادة">
+                    <Grid Background="#FFE5E5E5">
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="البحث حسب اسم المادة">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="البحث حسب التاريخ">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="البحث حسب التصنيف">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="فرز المواد المنتهية">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="فرز حسب تاريخ الصلاحية">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+            <DataGrid
+                Name="GridView1"
+                Margin="10"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Height="200">
+                
+            </DataGrid>
+        </StackPanel>
+       
+
+    </Grid>
+</UserControl>

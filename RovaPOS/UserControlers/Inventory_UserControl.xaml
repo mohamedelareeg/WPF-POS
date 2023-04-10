@@ -1,0 +1,619 @@
+﻿<UserControl x:Class="RovaPOS.UserControlers.Inventory_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RovaPOS.UserControlers"
+             mc:Ignorable="d" 
+            VerticalAlignment="Stretch" 
+             HorizontalAlignment="Stretch" 
+             Loaded="UserControl_Loaded">
+    <Grid Width="1360" Height="768"
+           Background="White" FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="370"></RowDefinition>
+            <RowDefinition Height="320"></RowDefinition>
+            <RowDefinition Height="78"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="2"
+            Orientation="Vertical"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Name="Menu_2_Panel" Visibility="Hidden"  HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+                <Button Height="30"
+                        Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="حفظ واضافة" Name="btn_Add"  Click="button_Add" Visibility="Hidden"
+                   
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="حفظ وتعديل"  Name="btn_Edit" Click="button_Edit"  Visibility="Hidden"              
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="الغاء"   Click="button_End"                   
+                    />
+
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Name="Menu_panel">
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="اضافة"   Click="button_Add_P"
+                   
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="تعديل"   Click="button_Edit_P"                   
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="حذف"   Click="button_Remove"                   
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="طباعة"                         
+                    />
+                <Button Height="30"
+                         Background="White"
+                        FontWeight="Bold"
+                    Width="150"
+                    Margin="5" 
+                    Content="اغلاق"   Click="button_close"
+                 
+                    />
+
+            </StackPanel>
+        </StackPanel >
+       
+        <StackPanel   Grid.Row="0"
+                      Orientation="Horizontal"
+                    Name="Panel_Add"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+          
+            >
+            
+            <StackPanel  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <Label Content="أسم السلعة"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="10"/>
+                    <TextBox Name="TXT_Name" Foreground="Blue"  FontSize="18" FontWeight="Bold" Margin="10" Height="30"  Width="400" TextAlignment="Center"/>
+                    <Label Content="نوع السلعة"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="10"/>
+                    <ComboBox Name="Combo_Cata" Foreground="Blue" Margin="10" Height="30"  Width="300" FontSize="18" FontWeight="Bold" />
+                    <Button Name="btn_Cata" Content="ادارة"
+                        Width="100"
+                        Height="40"
+                        Margin="10"
+                        FontSize="18"
+                        FontWeight="Bold" Click="Btn_Cata_Click"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="25,10,25,10">
+                    <DockPanel 
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+                        <StackPanel Orientation="Horizontal"
+                                   DockPanel.Dock="Top"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top">
+                            <Label Content="ألكمية المتوفرة لديك"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="10"/>
+                            <TextBox Name="TXT_Qua" FontSize="18" FontWeight="Bold" Margin="10" Height="30"  Width="250" TextAlignment="Center"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                           DockPanel.Dock="Top"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Top">
+                            <Label Content="الفئة  / الوحدة"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Margin="10"/>
+                            <ComboBox Name="combo_Type" Margin="10" Height="30"  Width="250" FontSize="18" FontWeight="Bold">
+                                <ComboBoxItem Name="cbi1">جرام</ComboBoxItem>
+                                <ComboBoxItem Name="cbi2">كجم</ComboBoxItem>
+                                <ComboBoxItem Name="cbi3">لتر</ComboBoxItem>
+                                <ComboBoxItem Name="cbi4">قطعة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi5">باكيت</ComboBoxItem>
+                                <ComboBoxItem Name="cbi6">كيس</ComboBoxItem>
+                                <ComboBoxItem Name="cbi7">صندوق</ComboBoxItem>
+                                <ComboBoxItem Name="cbi8">حبة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi9">سم</ComboBoxItem>
+                                <ComboBoxItem Name="cbi10">متر</ComboBoxItem>
+                                <ComboBoxItem Name="cbi11">علبة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi12">طبق</ComboBoxItem>
+                                <ComboBoxItem Name="cbi13">جهاز</ComboBoxItem>
+                                <ComboBoxItem Name="cbi14">شحن</ComboBoxItem>
+                                <ComboBoxItem Name="cbi15">وجبة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi16">خدمة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi17">مساعدة</ComboBoxItem>
+                                <ComboBoxItem Name="cbi18">بطاقة</ComboBoxItem>
+                            </ComboBox>
+
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel 
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+                        <StackPanel Orientation="Horizontal"
+                                   DockPanel.Dock="Top"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top">
+                            <Label Content="سعر الجملة"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="10"/>
+                            <TextBox Name="TXT_Cost" 
+                                
+                                 FontWeight="Bold"
+                                 FontSize="18"
+                                 MouseEnter="TXT_Cost_MouseEnter"
+                                TouchEnter="TXT_Cost_TouchEnter"
+                                 Margin="10" Height="30"  Width="200" TextAlignment="Center"   Background="Azure" TextChanged="TXT_Cost_TextChanged"/>
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                           DockPanel.Dock="Top"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Top">
+                            <Label Content="سعر البيع"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Margin="10"/>
+                            <TextBox Name="TXT_Price" 
+                                
+                                 FontWeight="Bold"
+                                 FontSize="18"
+                                 MouseEnter="TXT_Price_MouseEnter"
+                                 Margin="10" Height="30"  Width="200" TextAlignment="Center"   Background="Azure" TextChanged="TXT_Price_TextChanged"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel 
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+                        <StackPanel Orientation="Horizontal"
+                                   DockPanel.Dock="Top"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top">
+                            <Label Content="الربح"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="10 , 30 , 10 , 30"/>
+                            <TextBox Name="TXT_Earn" 
+                                Background="Azure"
+                                  Text="0.00"
+                                 FontWeight="Bold"
+                                 FontSize="18"
+                                 IsReadOnly="True" Margin="10 ,30,10,30" Height="30"  Width="150" TextAlignment="Center"
+                                 />
+
+                        </StackPanel>
+
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="25,0,25,0">
+                    <DockPanel
+                      Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+                        <Label Content="رقم الباركود - للتعقب"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="10"/>
+                        <TextBox Name="TXT_Barcode" FontSize="18" FontWeight="Bold" Margin="10" Height="30"  Width="250" TextAlignment="Center"/>
+                        <StackPanel
+                          HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        >
+                            <Image Source="D:\Mohamed\Projects\DesktopApplication\RovaPOS\RovaPOS\RovaPOS\Resources\Code39.gif"
+                           Width="165"
+                           Height="20" Stretch="Fill"
+                           Margin="10,0,10,0"/>
+
+                            <Button Content="رقم عشوائى"
+                            Height="30"
+                            Width="165"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Margin="10,0,10,0"
+                            Background="Azure"  Click="button_random_number"/>
+
+                        </StackPanel>
+                        <StackPanel 
+                        Visibility="Hidden"
+                          HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                    Name="Edit_panel">
+                            <Label Content="يمكنك اضافة بضاعة جديدة لنفس السلعة من هنا"
+                           FontSize="14"
+                           FontWeight="Bold"/>
+                            <StackPanel Orientation="Horizontal"
+                           Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+                                <Label Content="الكمية" Margin="10"/>
+                                <TextBox Name="TXT_NQUA" Width="100" Height="20" Margin="10"/>
+                                <Label Content="السعر" Margin="10"/>
+                                <TextBox Name="TXT_NPrice" Width="100" Height="20" Margin="10"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </DockPanel>
+
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="25,0,25,0">
+                    <DockPanel
+                      Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" >
+
+
+                        <Label Content="صورة السلعة"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="5"/>
+                        <Button Content="تحديد صورة"
+                                IsEnabled="False"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="5" Click="button_Choose_PIC" />
+                        <Image
+                        Name="Image_product"
+                         Source="/RovaPOS;component/Models/el-bostan.jpg"
+                        Width="50"
+                        Height="50"
+                        Margin="25,0,25,0"
+                        >
+                           
+                        </Image>
+
+                    </DockPanel>
+
+
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Image Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="/RovaPOS;component/pic/el-bostan.jpg"/>
+               
+            </StackPanel>
+        </StackPanel>
+
+
+
+
+
+
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabControl
+               
+            Height="100"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+                <TabItem Header="البحث حسب كود المادة">
+                    <Grid Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            
+                            <TextBox Width="250" Height="30"  Margin="10" Name="TXT_Barcode_Search"/>
+                            <Button Content="بحث" Width="100" Height="30" Margin="10" Name="Button_Barcode" Click="Button_Barcode_Click"/>
+                            <GroupBox Header="نوع البحث"
+                                >
+                                <StackPanel Orientation="Horizontal">
+
+                                    <RadioButton Margin="10" Content="تطابق الثيمة" Name="Radio_B_E" IsChecked="True" />
+                                    <RadioButton Margin="10" Content="اى شىء" Name="Radio_B_L"/>
+                               
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="البحث حسب اسم المادة">
+                    <Grid Background="White">
+                        <Grid Background="White">
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBox Width="250" Height="30"  Margin="10" Name="TXT_Name_Search"/>
+                                <Button Content="بحث" Width="100" Height="30" Margin="10" Name="Button_Name" Click="Button_Name_Click"/>
+                                <GroupBox Header="نوع البحث"
+                                >
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <RadioButton Margin="10" Content="تطابق الثيمة" Name="Radio_N_E" IsChecked="True" />
+                                        <RadioButton Margin="10" Content="اى شىء" Name="Radio_N_L"/>
+
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="البحث حسب تاريخ الاضافة">
+                    <Grid Background="White"/>
+                </TabItem>
+                <TabItem Header="البحث حسب التصنيف">
+                    <Grid Background="White">
+                        <Grid Background="White">
+                            <StackPanel Orientation="Horizontal">
+
+                                <ComboBox Width="250" Height="30"  Margin="10" Name="TXT_Cata_Search"/>
+                                <Button Content="بحث" Width="100" Height="30" Margin="10" Name="Button_Cata" Click="Button_Cata_Click"/>
+                                <GroupBox Header="نوع البحث"
+                                >
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <RadioButton Margin="10" Content="تطابق الثيمة" Name="Radio_C_E" IsChecked="True" />
+                                        <RadioButton Margin="10" Content="اى شىء" Name="Radio_C_L"/>
+
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="فرز المواد المنتهية">
+                    <Grid Background="White">
+                        <Button Margin="10" Width="500" Content="فرز المنتجات تنازليا حسب الكمية المتوفرة" FontSize="24" FontWeight="Bold" Name="Button_Quantity" Click="Button_Quantity_Click"></Button>
+                       
+                       
+                    </Grid>
+                </TabItem>
+                <TabItem Header="فرز حسب تاريخ الصلاحية">
+                    <Grid Background="White"/>
+                </TabItem>
+            </TabControl>
+            <DataGrid
+                Background="White"
+                Name="GridView1"
+                Margin="10"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Height="200"
+               SelectionMode="Single"
+                ItemsSource="{Binding View}"
+                             AutoGenerateColumns="False"   
+                IsReadOnly="True" CanUserAddRows="False"
+                ScrollViewer.CanContentScroll="True"
+                CanUserResizeColumns="False" CanUserResizeRows="False"
+                CanUserReorderColumns="False"
+                SelectionChanged="GridView1_SelectionChanged"
+               >
+                <DataGrid.Columns>
+                    <DataGridTextColumn  DisplayIndex="0" Header="الرقم" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn  FontSize="24" FontWeight="Bold"  DisplayIndex="1" Header="الاسم" Width="460" Binding="{Binding Name}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="2" Header="النوع" Width="150" Binding="{Binding Category}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="3" Header="الكمية" Width="100" Binding="{Binding Quantity}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Blue" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="4" Header="التكلفة" Width="100" Binding="{Binding Cost}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Blue" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="5" Header="سعر البيع" Width="150" Binding="{Binding Price}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="6" Header="الصنف" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="7" Header="الباركود" Width="200" Binding="{Binding Barcode}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="8" Header="الربح" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="9" Header="التاريخ" Width="150" Binding="{Binding Datex}" >
+                         <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="10" Header="تاريخ الانتهاء" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="12" FontWeight="Bold" DisplayIndex="11" Header="الصورة" Width="Auto" Visibility="Hidden" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        
+    </Grid>
+</UserControl>

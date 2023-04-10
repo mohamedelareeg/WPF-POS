@@ -1,0 +1,338 @@
+﻿<UserControl x:Class="RovaPOS.UserControlers.Bank_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          
+             xmlns:local1="clr-namespace:RovaPOS.Manager"
+             mc:Ignorable="d" 
+             VerticalAlignment="Stretch" 
+             HorizontalAlignment="Stretch" 
+             Loaded="UserControl_Loaded"
+             
+             >
+
+    <Grid Width="1360" Height="768"
+          Background="GhostWhite" FlowDirection="RightToLeft">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="952"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3" Grid.ColumnSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.05,1" StartPoint="0.1,0.2">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Grid.Column="1" Grid.Row="0"   VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+            <Label Content="ادارة ألصندوق" FontSize="32" FontWeight="Bold" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.RowSpan="3"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Background="GhostWhite">
+
+            <StackPanel Orientation="Vertical"
+                         VerticalAlignment="Stretch"
+                        HorizontalAlignment="Center">
+                <StackPanel
+                    Orientation="Horizontal"
+                     VerticalAlignment="Stretch"
+                        HorizontalAlignment="Center"
+                    >
+                    <Button Height="50" Width="50" Margin="10" Click="button_close">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/1041633.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/refresh.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/cell-14-2-480.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10" RenderTransformOrigin="0.5,0.5" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/new.png">
+                                <ImageBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
+                                        <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                                        <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </ImageBrush.RelativeTransform>
+                            </ImageBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="Auto" 
+                              VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
+                            >
+
+
+
+                    <StackPanel 
+               
+                Orientation="Vertical"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                           
+                        </StackPanel>
+                        <Calendar Visibility="Hidden" x:Name ="Date_Picker" SelectedDatesChanged="Date_Picker_SelectedDatesChanged"/>
+                        <Calendar Visibility="Hidden" x:Name ="Date_Picker_2" SelectedDatesChanged="Date_Picker_SelectedDatesChanged_2"/>
+                    </StackPanel>
+
+
+                    <StackPanel
+                        
+                        >
+
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0"  Grid.Column="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Right" FlowDirection="LeftToRight" >
+
+
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Grid.Row="1"  Grid.Column="1"
+                    FlowDirection="RightToLeft"
+                    >
+
+
+            <StackPanel Width="940" Margin="5,5,15,5" Background="White" >
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox Width="250" Height="30"  Margin="10" Name="TXT_Date_Search"/>
+                    <Button  Width="50" Height="50" Margin="5" Name="Button_DatePicker" Click="Button_DatePicker_Click">
+
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/christmas-date-icon.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Label Content="الى" Margin="10" FontSize="24"/>
+                    <TextBox Width="250" Height="30"  Margin="10" Name="TXT_Date_Search_2"/>
+                    <Button  Width="50" Height="50" Margin="5" Name="Button_DatePicker_2" Click="Button_DatePicker_Click_2">
+
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/christmas-date-icon.png"/>
+                        </Button.Background>
+                    </Button>
+                    <StackPanel >
+                        <Button Content="تقرير عن الفترة " FontSize="18" Width="150" Background="White" Height="30" Margin="10,5,10,5" Name="Button_Date" Click="Button_Date_Click"/>
+                        <Button Content="تقرير عام" FontSize="18" Background="FloralWhite" Width="150" Height="30" Margin="10,5,10,5" Name="Button_Date_All" Click="Button_Date_All_Click"/>
+                    </StackPanel>
+                  
+                   
+
+                </StackPanel>
+
+            </StackPanel>
+
+                
+
+        </StackPanel>
+
+
+
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" >
+           
+            <StackPanel Margin="10" Background="White" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <GroupBox Width="250" Header="اجمالى المبيعات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Sells" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+               
+                <StackPanel>
+                    <GroupBox Width="250" Header="ربح المبيعات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_E" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+                <StackPanel>
+                    <GroupBox Width="250" Header="المبلغ المتبقى" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_Remain" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10" Background="White" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <GroupBox Width="250" Header="اجمالى المشتريات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Purchase" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="المبلغ المدفوع" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Purchase_Paid" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="المبلغ المتبقى" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Purchase_Remain" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Margin="10" Background="White" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <GroupBox Width="250" Header="اجمالى المصروفات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Expenses" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="مصاريف النقل" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Transport" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="استخدام شخصى" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Used" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Margin="10" Background="White" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <GroupBox Width="250" Header="صافى الدخل" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Income" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="ضرايب المبيعات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Tax" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="خصومات المبيعات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Discount" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Margin="10" Background="White" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <GroupBox Width="250" Header="مرتجعات المبيعات" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Returned" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="مرتبات العاملين" FontSize="24" FontWeight="Bold"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Salaries" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel>
+                    <GroupBox Width="250" Header="رصيد الخزينة" FontSize="24" FontWeight="Bold" Foreground="Blue"
+                                >
+                        <StackPanel Orientation="Horizontal">
+
+
+                            <Label Width="250" Margin="10" HorizontalContentAlignment="Center" Content="0"  Name="Label_TOT_Bank" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

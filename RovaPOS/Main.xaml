@@ -1,0 +1,258 @@
+﻿<Window x:Class="RovaPOS.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RovaPOS"
+        mc:Ignorable="d"
+  Title="MainWindow" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize" 
+Loaded="Window_Loaded"
+       
+        >
+    <Grid
+
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch"
+      >
+        
+        <Rectangle Name="Rec_One" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0.5">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Button  VerticalAlignment="Top" HorizontalAlignment="Right"
+                Width="150" Height="50" Click="Button_Click" Grid.ColumnSpan="2" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="pic/close.jpg"/>
+            </Button.Background>
+        </Button>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label  Name="Label_Owner" Content="اسم المحل" FontSize="32" FontWeight="Bold"  VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <Ellipse Height="35"
+                         Width="35"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Margin="5,5,10,0" >
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="pic/el-bostan.jpg" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+
+                </Ellipse>
+            </StackPanel>
+            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Background="GhostWhite">
+
+
+                    <StackPanel HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Grid.ColumnSpan="2" >
+
+
+                        <StackPanel
+                Orientation="Horizontal">
+                            <Button Height="350" Width="150" Margin="15,25,20,25" 
+                                    Name="Btn_Settings" Click="Btn_Settings_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}">
+
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pic/settings.jpg"/>
+                                </Button.Background>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <StackPanel Orientation="Vertical">
+                                <Button Height="170" Width="250" Margin="10,25,10,5"
+                                Name="Btn_Purchase" Click="Btn_Purchase_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="pic/buy.jpg"/>
+                                    </Button.Background>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Height="170" Width="250" Margin="10,5,10,25"
+                                  Name="Btn_Customers" Click="Btn_Customers_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="pic/customers.jpg"/>
+                                    </Button.Background>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                            <Button Height="350" Width="150" Margin="10,25,10,25"
+                        Name="Btn_Sells" Click="Btn_Sells_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="{x:Null}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pic/Sells.jpg"/>
+                                </Button.Background>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <StackPanel Orientation="Vertical">
+                                <Button Height="170" Width="250" Margin="10,25,10,5"
+                                Name="Btn_Bank" Click="Btn_Bank_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="pic/bank.jpg"/>
+                                    </Button.Background>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Height="170" Width="250" Margin="10,5,10,25"
+                            Name="Btn_Inventory" Click="Btn_Inventory_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="pic/inventory.jpg"/>
+                                    </Button.Background>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                            <Button Height="350" Width="150" Margin="10,25,15,25"
+                        Name="Btn_POS" Click="Btn_POS_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pic/pos.jpg"/>
+                                </Button.Background>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+
+
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+       
+       
+     
+
+    </Grid>
+</Window>

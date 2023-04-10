@@ -1,0 +1,578 @@
+﻿<UserControl x:Class="RovaPOS.UserControlers.POS_Restaurant_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RovaPOS.UserControlers"
+             xmlns:local1="clr-namespace:RovaPOS.Manager"
+             mc:Ignorable="d" 
+             VerticalAlignment="Stretch" 
+             HorizontalAlignment="Stretch" 
+             KeyDown="UserControl_KeyDown"
+             >
+    
+    <Grid Width="1360" Height="768"
+          Background="GhostWhite" FlowDirection="RightToLeft">
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="362"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="952"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3" Grid.ColumnSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.05,1" StartPoint="0.1,0.2">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Grid.Column="0" Grid.RowSpan="3"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Background="GhostWhite">
+            
+            <StackPanel Orientation="Vertical"
+                         VerticalAlignment="Stretch"
+                        HorizontalAlignment="Center">
+                <StackPanel
+                    Orientation="Horizontal"
+                     VerticalAlignment="Stretch"
+                        HorizontalAlignment="Center"
+                    >
+                    <Button Height="50" Width="50" Margin="10" Click="Button_Click_close">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/1041633.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10" Click="Button_Click_5">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/refresh.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/cell-14-2-480.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50" Margin="10" RenderTransformOrigin="0.5,0.5" Click="Button_Click_2">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/RovaPOS;component/pic/new.png">
+                                <ImageBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
+                                        <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                                        <RotateTransform Angle="0" CenterY="0.5" CenterX="0.5"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </ImageBrush.RelativeTransform>
+                            </ImageBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="Auto" 
+                              VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
+                            >
+                    <Label Content="ادخل البار كود الخاص بالمنتج"
+                           FontSize="24" FontWeight="Bold" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" ></Label>
+                    <StackPanel Orientation="Horizontal"
+                                   VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                        <Label Content="باركود دولى"
+                           FontSize="14" FontWeight="Bold" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" ></Label>
+                        <RadioButton Name="Max_GOODS" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Margin="15,5,15,5" IsChecked="True"></RadioButton>
+                        <Label Content="باركود تجزئة"
+                           FontSize="14" FontWeight="Bold" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"  ></Label>
+                        <RadioButton Name="Small_GOODS" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30" Margin="15,5,15,5"></RadioButton>
+                    </StackPanel>
+                    <TextBox Name ="Search_TXT" Height="30" Margin="5" TextAlignment="Center" FontSize="24" FontWeight="Bold"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch" TextChanged="Search_TXT_TextChanged"></TextBox>
+                    <StackPanel 
+               
+                Orientation="Vertical"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Label Margin="5" Content="رقم الفاتورة" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                            <Label Margin="5" Name ="Label_BIllnumber"  Foreground="Blue" Content="0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                        </StackPanel>
+                      
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Label HorizontalContentAlignment="Center" Margin="5" Content="اجمالى المبلغ"  FontSize="18" FontWeight="Bold"  />
+                            <Label HorizontalContentAlignment="Center" Margin="5" Name="Label_TOT" Content="0.00" FontSize="18" Width="272" FontWeight="Bold"  Background="Orange" Foreground="White"  />
+                            <Label HorizontalContentAlignment="Center" Margin="5" Name="Label_Earn" Content="0.00" FontSize="18" Width="272" FontWeight="Bold"  Background="Orange" Foreground="White" Visibility="Hidden"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                         <Button  Height="50" Margin="5,5,0,5" Content="  انهاء البيع وفتح فاتورة جديدة  " IsEnabled="False" Background="#FF036AFF" Foreground="White" FontSize="20" FontWeight="Bold" Click="Button_Click_3"></Button>
+                        <Button  Height="50" Margin="0,5,5,5" Content="  تعليق الفاتورة  "  Background="Red" Foreground="White" FontSize="20" FontWeight="Bold"></Button>
+                        </StackPanel>
+                        <Button  Height="50" Margin="5" Content="  انهاء البيع وفتح فاتورة جديدة (بدون انترنت)  "  Background="#FF036AFF" Foreground="White" FontSize="20" FontWeight="Bold" Name="btn_save" Click="Btn_save_Click"></Button>
+                        <Button  Height="50" Margin="5" Content="  قائمة الفواتير المعلقة  "  Background="Red" Foreground="White" FontSize="20" FontWeight="Bold"></Button>
+
+                    </StackPanel>
+                    <ListView Visibility="Hidden"  Name="ListViewSelected" SelectionChanged="MySelectionChanged_Select"  HorizontalAlignment="Stretch" 
+                                  VerticalAlignment="Stretch" Margin="10,5,10,5" Height="260"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+             ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+             SelectedItem="{Binding SelectedEmployee}" 
+             ItemsSource="{Binding View}" FlowDirection="RightToLeft"
+                   
+                               >
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Border  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="Black" BorderThickness="1">
+                                            <Grid Height="95" Width="250" HorizontalAlignment="Center" Margin="1"  VerticalAlignment="Center"   >
+                                            <StackPanel Orientation="Vertical" Margin="10,1,10,1"
+                                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <StackPanel Orientation="Horizontal"
+                                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    
+                                                   
+                                                </StackPanel>
+
+                                                <TextBlock Height="30"  FontSize="16" Foreground="Blue" FontFamily="Traditional Arabic" >
+                                                          <TextBlock Text="{Binding Barcode}"/>
+                                                     </TextBlock>
+                                                <TextBlock Height="30"  FontSize="16" Foreground="Blue" FontFamily="Traditional Arabic">
+                                                          <TextBlock Text="{Binding Name}"/>
+                                                          <TextBlock Text="@"/>
+                                                          <TextBlock Text="{Binding Price}"/>
+                                                         <TextBlock Text="جنــــــية"/>
+                                                     </TextBlock>
+                                                <TextBlock Height="30"  FontSize="16" Foreground="Orange" FontFamily="Traditional Arabic" >
+                                                          <TextBlock Text="{Binding Details}"/>
+                                                     </TextBlock>
+                                                </StackPanel>
+                                            
+
+
+                                        </Grid>
+                                        </Border>
+                                    </Grid>
+                                  
+                                    <Grid>
+                                        <Border  HorizontalAlignment="Stretch" Width="110" VerticalAlignment="Stretch"  BorderBrush="Black" BorderThickness="1">
+
+                                            <Grid Height="95" HorizontalAlignment="Center" Margin="1"  VerticalAlignment="Center"   >
+                                                <StackPanel Orientation="Vertical"
+                                                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <TextBlock Height="30"  FontSize="16" Foreground="Blue" FontFamily="Traditional Arabic" >
+                                                          <TextBlock Text="{Binding Quantity}"/>
+                                                     </TextBlock>
+
+                                                </StackPanel>
+
+
+                                            </Grid>
+
+                                         
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel >
+                            <ItemsPanelTemplate >
+                                <StackPanel  Background="Transparent" Orientation="Vertical" >
+
+
+                                </StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                    </ListView>
+                  
+                    <StackPanel
+                        
+                        >
+                        
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+          
+
+        </StackPanel>
+       
+        <StackPanel Orientation="Horizontal" Grid.Row="0"  Grid.Column="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Right" FlowDirection="LeftToRight" >
+
+            <TextBox  Text="{Binding TextSearch,UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Center" Background="White" Grid.Row="0"   Height="30" Margin="15,5,10,5" Width="550" FontSize="18" FontWeight="Bold"  ></TextBox>
+            <Label Content="ادخل اسم الصنف المراد البحث عنة"  FontSize="24" Margin="15,0,15,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <ListView  Grid.Row="1"  Grid.Column="1"  Name="lsNames" SelectionChanged="MySelectionChanged_Cat" Width="920" Margin="15,5,15,5" HorizontalAlignment="Center"
+             ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+             ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+             SelectedItem="{Binding SelectedCata}" 
+             ItemsSource="{Binding View_Cata}" FlowDirection="RightToLeft"
+                   
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Silver">
+                        <TextBlock FontSize="24" FontWeight="Bold" Text="{Binding Name}" Margin="10,2,10,2" />
+                    </Border>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <StackPanel  Background="Transparent" Orientation="Horizontal" >
+
+
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+        </ListView>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Grid.Row="2"  Grid.Column="1"
+                    FlowDirection="RightToLeft"
+                    >
+            <StackPanel
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Grid.Row="0"  Grid.Column="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Right" FlowDirection="LeftToRight" >
+
+                    <TextBox  Text="{Binding TextSearchGoods,UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Center" Background="White" Grid.Row="0"   Height="30" Margin="15,5,10,5" Width="350" FontSize="18" FontWeight="Bold"  ></TextBox>
+                    <Label Content="ادخل اسم السلعة"  FontSize="24" Margin="15,0,10,0" Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <ListView  Name="ListViewGoods" SelectionChanged="MySelectionChanged_Goods" Width="550" Height="310" HorizontalAlignment="Right" 
+                         SelectedItem="{Binding SelectedGoods}" 
+                         ItemsSource="{Binding View_Goods}"
+                       Margin="15,5,15,5">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Label Content="{Binding Name}" Width="300" Height="50"  Margin="15,5,15,5" FontSize="18" FontWeight="Bold"/>
+                            </Grid>
+                            <Grid>
+                                <Label Content="{Binding Price}" Foreground="{Binding PriceBrush}" Width="200" Height="50"  Margin="15,5,15,5" FontSize="18" FontWeight="Bold"/>
+                            </Grid>
+                           
+                           
+                        </StackPanel>
+                       
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel >
+                    <ItemsPanelTemplate >
+                        <StackPanel  Background="Transparent" Orientation="Vertical" >
+
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+            </ListView>
+            </StackPanel>
+           
+            <StackPanel Width="350" Margin="5,5,15,5" Background="White">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                  
+                    <StackPanel>
+                        <Label Name="Label_Name" Content="اختر سلعة عن طريق اللمس او الباركود" FontSize="20" FontWeight="Bold" Margin="15,5,15,5"/>
+                        <Label Name="Label_Barcode" HorizontalContentAlignment="Center" Content="0" FontSize="12" FontWeight="Bold" Margin="1" Foreground="Green"/>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="الكمية" FontSize="18" FontWeight="Bold" Margin="15,5,5,15"/>
+                    <TextBox   Text="1" Name="TXT_QUA" Width="100" Height="30" FontSize="18" FontWeight="Bold" Margin="15,5,5,15" TextAlignment="Center" TextChanged="TXT_QUA_TextChanged"/>
+                    <ComboBox  SelectionChanged="Combo_Type_SelectionChanged" 
+                                 FontSize="18" Name="combo_Type" Margin="5,5,5,15" Height="30"  Width="75">
+                        <ComboBoxItem Name="cbi1">1</ComboBoxItem>
+                        <ComboBoxItem Name="cbi2">0.750</ComboBoxItem>
+                        <ComboBoxItem Name="cbi3">0.500</ComboBoxItem>
+                        <ComboBoxItem Name="cbi4">0.250</ComboBoxItem>
+                        <ComboBoxItem Name="cbi5">0.125</ComboBoxItem>
+                        <ComboBoxItem Name="cbi6">0.100</ComboBoxItem>
+                        <ComboBoxItem Name="cbi7">0.070</ComboBoxItem>
+                        <ComboBoxItem Name="cbi8">0.050</ComboBoxItem>
+                        <ComboBoxItem Name="cbi9">0.030</ComboBoxItem>
+                        <ComboBoxItem Name="cbi10">0.150</ComboBoxItem>
+                        <ComboBoxItem Name="cbi11">0.180</ComboBoxItem>
+                        <ComboBoxItem Name="cbi12">0.200</ComboBoxItem>
+                        <ComboBoxItem Name="cbi13">0.300</ComboBoxItem>
+                        <ComboBoxItem Name="cbi14">0.400</ComboBoxItem>
+                        <ComboBoxItem Name="cbi15">0.500</ComboBoxItem>
+                        <ComboBoxItem Name="cbi16">0.600</ComboBoxItem>
+                        <ComboBoxItem Name="cbi17">0.700</ComboBoxItem>
+                        <ComboBoxItem Name="cbi18">0.800</ComboBoxItem>
+                        <ComboBoxItem Name="cbi19">0.900</ComboBoxItem>
+                    </ComboBox>
+                    <Button Content="+" Width="50"  FontWeight="Bold" Height="30" Margin="5,5,5,15" FontSize="18" Foreground="Blue" Background="White" Click="Button_Click_Add"></Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="سعر البيع" FontSize="18" FontWeight="Bold" Margin="15,5,5,15"/>
+                    <StackPanel>
+                        <TextBox  Text="0" Name="TXT_Price" Width="200" Height="30" FontSize="18" FontWeight="Bold" Margin="15,5,5,15"  TextAlignment="Center" TextChanged="TXT_Price_TextChanged"/>
+                        <Label Name="Label_Lose" Visibility="Hidden" HorizontalContentAlignment="Center"  FontSize="12" FontWeight="Bold" Margin="1" Foreground="Red"/>
+
+                    </StackPanel>
+                   
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="ملاحظات" FontSize="18" FontWeight="Bold" Margin="15,5,5,15"/>
+                    <TextBox  Name="TXT_Details" Width="200" Height="30" FontSize="18" FontWeight="Bold" Margin="15,5,5,15"  TextAlignment="Center"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <Button Content="موافق [F1]" Width="100"  FontWeight="Bold" Height="40" Margin="5,10,10,10" Background="Azure" Click="Button_Click_1"  >
+                       
+                    </Button>
+                    <Button Content="الغاء" Width="100" FontWeight="Bold"  Height="40"  Margin="5,10,10,10" Background="Transparent" Click="Button_Click_4"  >
+
+                    </Button>
+                    <Button Content="ازالة" Width="100" Foreground="White" FontWeight="Bold" Height="40"  Margin="5,10,10,10" Background="Red"  Visibility="Hidden" Name="Btn_Delete" Click="Btn_Delete_Click">
+
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Label Content="موشر الامان " FontSize="12" FontWeight="Bold" Margin="2"/>
+                    <Label Name="Label_Status" Content="مكسب " FontSize="12" FontWeight="Bold" Margin="2" Foreground="Blue"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+        <Viewbox Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" >
+
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Margin="5,0,0,0"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                >
+                    <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <Button Width="50" Height="40" Margin="5" Content="%" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold" />
+                        <Button Width="50" Height="40" Margin="5">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/RovaPOS;component/pic/math_delete.png" Stretch="Uniform">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.7" ScaleY="0.6"/>
+                                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Button.Background>
+                        </Button>
+                        <TextBox Width="280" Height="40" Margin="5,5,15,5" TextAlignment="Center" FontSize="24" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <Button Width="110" Height="40" Margin="5" Content="×" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="9" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="8" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="7" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="100" Height="40" Margin="5">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/RovaPOS;component/pic/21-512.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <Button Width="110" Height="40" Margin="5" Content="÷" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="6" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="5" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="4" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="100" Height="40" Margin="5" RenderTransformOrigin="0.5,0.5">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/RovaPOS;component/pic/38-512.png" Stretch="Uniform">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleY="1" ScaleX="1"/>
+                                            <SkewTransform AngleY="0" AngleX="0"/>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <Button Width="110" Height="40" Margin="5" Content="+" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="3" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="2" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="1" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="100" Height="40" Margin="5">
+                            <Button.Background >
+                                <ImageBrush ImageSource="/RovaPOS;component/pic/handshake-651818_960_720.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    >
+                        <Button Width="110" Height="40" Margin="5" Content="-" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="50" Height="40" Margin="5" Background="#FF036AFF" Content="." Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="110" Height="40" Margin="5" Background="#FF036AFF" Content="0" Foreground="White" FontSize="24" FontWeight="Bold"></Button>
+                        <Button Width="100" Height="40" Margin="5" Content="=" Background="White" Foreground="Black" FontSize="24" FontWeight="Bold"></Button>
+                    </StackPanel>
+
+                </StackPanel>
+                
+                <StackPanel
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                >
+                    
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+
+
+
+        <StackPanel Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" >
+            <DataGrid Name="GridView1" AutoGenerateColumns="False"
+                                   Background="White"
+                                 
+                                  Height="240"
+                                  SelectionMode="Single"
+                                  ItemsSource="{Binding View}"
+                                  Margin="10,2,10,2"
+                                  HorizontalAlignment="Stretch" 
+                                  VerticalAlignment="Stretch"
+                                  IsReadOnly="True" CanUserAddRows="False"
+                                  ScrollViewer.CanContentScroll="True"
+                                  CanUserResizeColumns="False" CanUserResizeRows="False"
+                              CanUserReorderColumns="False"
+                              CurrentCellChanged="GridView1_CurrentCellChanged"
+                              SelectionChanged="GridView1_SelectionChanged"
+                              MouseDown="GridView1_MouseDown"
+                              MouseDoubleClick="GridView1_MouseDoubleClick" 
+                      DataContextChanged="GridView1_DataContextChanged"
+                      SelectedCellsChanged="GridView1_SelectedCellsChanged"
+                                  >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn  DisplayIndex="0" Header="الرقم" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn  FontSize="24" FontWeight="Bold"  DisplayIndex="1" Header="الاسم" Width="500" Binding="{Binding Name}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="2" Header="النوع" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="3" Header="الكمية" Width="100" Binding="{Binding Quantity}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Blue" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="4" Header="التكلفة" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="24" FontWeight="Bold" DisplayIndex="5" Header="سعر البيع" Width="150" Binding="{Binding Price}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="{Binding PriceBrush}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Foo}" Value="1">
+                                        <Setter Property="Foreground" Value="Blue" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding Foo}" Value="2">
+                                        <Setter Property="Foreground" Value="Yellow" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn DisplayIndex="6" Header="الصنف" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn DisplayIndex="7" Header="الوقت" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn DisplayIndex="8" Header="التاريخ" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn DisplayIndex="9" Header="الباركود" Width="Auto"  Visibility="Hidden" />
+                    <DataGridTextColumn DisplayIndex="10" Header="الربح" Width="Auto" Visibility="Hidden" />
+                    <DataGridTextColumn FontSize="12" FontWeight="Bold" DisplayIndex="11" Header="ملاحظات" Width="150"  Binding="{Binding Details}" >
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

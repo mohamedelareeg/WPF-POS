@@ -1,0 +1,136 @@
+﻿<Window x:Class="RovaPOS.Customers_C"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RovaPOS"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize" 
+
+       
+        >
+    <Grid
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <Rectangle Name="Rec_One" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0.5">
+                    <GradientStop Color="#1b96f6" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button  VerticalAlignment="Top" HorizontalAlignment="Right"
+                Width="150" Height="50" Click="Button_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <ImageBrush ImageSource="pic/backword.png"/>
+            </Button.Background>
+        </Button>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+
+                    Width="800" 
+                    Height="400" Grid.ColumnSpan="2" Margin="-16,68,-16,67.2">
+            <StackPanel Name="Main_panel" Orientation="Horizontal" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" FlowDirection="RightToLeft">
+
+                <DockPanel  Margin="10" 
+                                Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" 
+                                FlowDirection="LeftToRight">
+
+                    <Button Width="220"
+                            Height="220"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,25,10,25"
+                           Background="White"
+                            Content="العملاء"
+                            FontSize="24"
+                            FontStyle="Normal"
+                            FontWeight="Bold"
+                            DockPanel.Dock="Top"
+                        Click="Button_Click_5"  
+                     
+                           >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Stroke="Black"
+                         StrokeThickness="2">
+                                        <Ellipse.Fill>
+                                            <RadialGradientBrush>
+                                                <RadialGradientBrush.Transform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform ScaleY="0.9"/>
+                                                    </TransformGroup>
+                                                </RadialGradientBrush.Transform>
+                                                <GradientStop Color="GhostWhite" Offset="0"/>
+                                                <GradientStop Color="White" Offset="0.9"/>
+                                                <GradientStop Color="Orange" Offset="1"/>
+                                            </RadialGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+                </DockPanel>
+                <DockPanel  Margin="10" 
+                                Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" 
+                                FlowDirection="LeftToRight">
+
+                    <Button Width="220"
+                            Height="220"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="10,25,10,25"
+                           Background="White"
+                            Content="الموظفين"
+                            FontSize="24"
+                            FontStyle="Normal"
+                            FontWeight="Bold"
+                            DockPanel.Dock="Top"
+                        Click="Button_Click_6"  
+                     
+                           >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Ellipse Stroke="Black"
+                         StrokeThickness="2">
+                                        <Ellipse.Fill>
+                                            <RadialGradientBrush>
+                                                <RadialGradientBrush.Transform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform ScaleY="0.9"/>
+                                                    </TransformGroup>
+                                                </RadialGradientBrush.Transform>
+                                                <GradientStop Color="GhostWhite" Offset="0"/>
+                                                <GradientStop Color="White" Offset="0.9"/>
+                                                <GradientStop Color="Orange" Offset="1"/>
+                                            </RadialGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+
+                </DockPanel>
+               
+
+            </StackPanel>
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>
