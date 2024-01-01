@@ -21,3 +21,7 @@ This is a simple WPF Point of Sale (POS) application developed using C# and .NET
 4. Build the solution to restore dependencies and compile the application.
 5. Set the startup project to the desired application (e.g., POS, Main).
 6. Run the application using Visual Studio.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
